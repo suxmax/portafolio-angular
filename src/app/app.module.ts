@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {HttpClientModule} from '@angular/common/http';
 //rutas
 import { appRoutingModule } from './app-routing.module';
 
@@ -23,7 +23,8 @@ import { ItemComponent } from './pages/item/item.component';
   ],
   imports: [
     BrowserModule,
-    appRoutingModule
+    appRoutingModule,
+    HttpClientModule //con questo possiamo fare petizione PUT GET POST DELETE etc a server rest
   ],
   providers: [],
   bootstrap: [AppComponent]

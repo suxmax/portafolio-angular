@@ -25,9 +25,8 @@ export class ProductosService {
       this.http.get('https://angular-html-52509.firebaseio.com/productos_idx.json') 
         .subscribe( (response: ProductoInterface[]) => {
           this.productos = response;
-          setTimeout(() => {
-            this.cargando = false;
-          },500)
+          this.cargando = false;
+
           resolve();
         });
     });
@@ -55,23 +54,23 @@ export class ProductosService {
       this.filtrarProductos(termino);
     }
 
-     this.productosFiltrado = this.productos.filter(producto => {
-       return true;
-     });
+    }
 
-     console.log(this.productosFiltrado);
-   }
+   private filtrarProductos( termino: string ) {
 
-   private filtrarProductos(termino:string)
-   {
+    // console.log(this.productos);
     this.productosFiltrado = [];
+
     termino = termino.toLocaleLowerCase();
-    this.productos.forEach(prod => {
+
+    this.productos.forEach( prod => {
+
       const tituloLower = prod.titulo.toLocaleLowerCase();
-      if( prod.categoria.indexOf(termino) >= 0 || tituloLower.indexOf(termino) >= 0)
-      {
-        this.productosFiltrado.push(prod);
+
+      if ( prod.categoria.indexOf( termino ) >= 0 || tituloLower.indexOf( termino ) >= 0  ) {
+        this.productosFiltrado.push( prod );
       }
-    })
-   }
+
+    });
+  }
 }
